@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>My To-Do List</h1>
+        </header>
+
+        <!-- Input Form -->
+        <div class="card form-card">
+            <h2 class="card-title">Add New Task</h2>
+            
+            <form id="todoForm" class="todo-form">
+                <div class="form-group">
+                    <label for="taskInput">Task Description</label>
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        placeholder="Enter your task..."
+                        class="form-input"
+                    >
+                    <span class="error-message" id="taskError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="dateInput">Due Date</label>
+                    <div class="date-input-wrapper">
+                        <svg class="calendar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <input 
+                            type="datetime-local" 
+                            id="dateInput" 
+                            class="form-input date-input"
+                        >
+                    </div>
+                    <span class="error-message" id="dateError"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add Task
+                </button>
+            </form>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="card filter-card">
+            <div class="filter-header">
+                <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <h3>Filter Tasks</h3>
+            </div>
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="today">Today</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+            </div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="card list-card">
+            <div class="list-header">
+                <h2 class="card-title">Tasks (<span id="taskCount">0</span>)</h2>
+                <span class="task-progress" id="taskProgress"></span>
+            </div>
+
+            <div id="todoList" class="todo-list">
+                <!-- Todo items will be inserted here -->
+            </div>
+
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <p class="empty-title">No tasks found</p>
+                <p class="empty-subtitle">Add your first task above</p>
+            </div>
+        </div>
+    </div>
+    <template id="todoTemplate">
+        <div class="todo-item">
+            <svg 
+                class="todo-checkbox"
+                width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+            </svg>
+
+            <div class="todo-content">
+                <p class="todo-task"></p>
+                <div class="todo-date">
+                    <span class="added-date"></span> |
+                    <span class="due-date"></span>
+                </div>
+            </div>
+
+            <button class="todo-delete">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+            </button>
+        </div>
+    </template>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
